@@ -1,15 +1,23 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import { AppProvider } from "./context/AppContext";
+import Home from "./pages/Home";
+import PostPage from "./pages/PostPage";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
-
-function App() {
-  
-
+export default function App() {
   return (
-    <>
-      <div className="text-red-600">
-        Hello, World
-      </div>
-    </>
-  )
+    <AppProvider>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/post/:id" element={<PostPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
+    </AppProvider>
+  );
 }
-
-export default App
